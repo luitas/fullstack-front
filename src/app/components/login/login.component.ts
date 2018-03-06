@@ -43,7 +43,7 @@ export class LoginComponent implements OnInit, OnDestroy {
 
 
     getLoginUrl(): string {
-        const backUrl = 'http://127.0.0.1:4200' + this.router.url;
+        const backUrl = environment.fromLoginUrl;
 
         return `${environment.githubLogin}?client_id=${environment.clientId}&redirect_uri=${encodeURI(backUrl)}`;
     }

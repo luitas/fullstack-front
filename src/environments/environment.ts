@@ -8,6 +8,7 @@ export const environment = {
     clientId: '291f0a8055e6541d4475',
     githubLogin: 'https://github.com/login/oauth/authorize',
     apiUrl: 'http://127.0.0.1:8000/api/',
+    fromLoginUrl: 'http://127.0.0.1:4200/login',
     tokenName: 'token',
 
 };
