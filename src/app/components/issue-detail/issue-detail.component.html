@@ -1,0 +1,31 @@
+<h1>Issue detail</h1>
+<a (click)="goBack()">Back to issues</a>
+
+<div *ngIf="issueItem">
+    <div>{{issueItem.issue.state}}</div>
+    <h1>{{ issueItem.issue.title }} <span>#{{ issueItem.issue.id }}</span></h1>
+    <div>
+        <div>
+            <a href="{{issueItem.issue.user.html_url}}">{{issueItem.issue.user.login}}</a>
+            opened this issue {{issueItem.issue.created_at|timeAgo}}
+        </div>
+        <div>
+            {{issueItem.issue.comments}} comments
+        </div>
+    </div>
+    <ul>
+        <li *ngFor="let comment of issueItem.comments">
+            <img class="avatar" [src]="comment.user.avatar_url">
+            <div class="comment-body">
+                <a href="{{comment.user.html_url}}">{{comment.user.login}}</a> commented {{comment.created_at|timeAgo}}
+                <hr />
+                {{comment.body}}
+            </div>
+            <div class="cl">&nbsp;</div>
+        </li>
+    </ul>
+</div>
+<div *ngIf="!issueItem">
+    Loading...
+</div>
+

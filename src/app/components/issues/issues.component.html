@@ -1,0 +1,27 @@
+<h1>Issues List</h1>
+
+<div *ngIf="openIssues || closeIssues">
+    <a (click)="selectIssuesState(openIssues)">open <span *ngIf="openIssues">({{openIssues.total}})</span></a>
+    <a (click)="selectIssuesState(closedIssues)">closed <span *ngIf="closedIssues">({{closedIssues.total}})</span></a>
+
+</div>
+<div *ngIf="!(openIssues || closeIssues)">
+    Loading...
+</div>
+
+<ul *ngIf="selectedIssues">
+    <li *ngFor="let issue of selectedIssues.issues">
+        <div>
+            <span>{{issue.state}}</span>
+            <h3>{{issue.title}} <a (click)="selectIssue(issue)"><span>#{{issue.id}}</span></a></h3>
+            <div class="labels" *ngFor="let label of issue.labels">
+                <span [ngStyle]="{'background-color': '#' + label.color}">{{label.name}}</span>
+            </div>
+            <div>opened {{issue.created_at|timeAgo}} by <a href="{{issue.user.html_url}}" target="_blank">{{issue.user.login}}</a></div>
+            <div *ngIf="issue.comments">
+                comments: {{issue.comments}}
+            </div>
+            <div>{{issue.body}}</div>
+        </div>
+    </li>
+</ul>
